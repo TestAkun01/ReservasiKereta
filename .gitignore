@@ -1,0 +1,44 @@
+# Ignore environment files
+.env
+
+# Ignore sensitive configuration files
+config/database.php
+
+# Ignore Composer files
+/vendor/
+/composer.lock
+
+# Ignore IDE specific files and folders
+.vscode/
+.idea/
+
+# Ignore node modules if using Node.js
+/node_modules/
+
+# Ignore cache or log files
+*.log
+*.cache
+*.tmp
+
+# Ignore system files
+.DS_Store
+Thumbs.db
+
+# Ignore compiled assets
+/public/assets/css/*
+/public/assets/js/*
+/public/assets/images/*
+
+# But keep this specific folder structure
+!/public/assets/css/
+!/public/assets/js/
+!/public/assets/images/
+
+# Ignore PHPStorm specific files
+*.iml
+/.phpstorm.meta.php
+
+# Ignore any temp or build-related files
+/tmp/
+/build/
+/public/.htaccess
