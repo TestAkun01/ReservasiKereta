@@ -10,7 +10,7 @@ class TrainController extends Controller
     {
         $stationModel = $this->model('Station');
         $data['stations'] = $stationModel->getAllStations();
-        $this->view('search', $data);
+        $this->view('train/search', $data);
     }
 
     public function search()
@@ -21,12 +21,15 @@ class TrainController extends Controller
             $date = $_GET['date'] ?? null;
             $tickets = $_GET['tickets'] ?? null;
 
+            $stationModel = $this->model('Station');
+            $data['stations'] = $stationModel->getAllStations();
+
             $scheduleModel = $this->model('Schedule');
             $availableSchedules = $scheduleModel->getAvailableSchedules($from, $to, $date, $tickets);
 
             $data['schedules'] = $availableSchedules;
             $data['tickets'] = $tickets;
-            $this->view('result', $data);
+            $this->view('train/search', $data);
         } else {
             header("location: /");
             exit;

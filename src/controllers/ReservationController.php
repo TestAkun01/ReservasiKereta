@@ -34,9 +34,9 @@ class ReservationController extends Controller
         $tickets = isset($_GET['tickets']) ? $_GET['tickets'] : null;
 
         if ($status == 'success') {
-            $this->view("booking_success", ["tickets" => $tickets]);
+            $this->view("reservation/status/success", ["tickets" => $tickets]);
         } elseif ($status == "failed") {
-            $this->view("booking_failure");
+            $this->view("reservation/status/failed");
         } else {
             header("location: /");
             exit;

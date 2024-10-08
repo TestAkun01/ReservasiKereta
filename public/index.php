@@ -8,19 +8,16 @@ use App\Core\Router;
 
 $router = new Router();
 
-$router->get('/', 'TrainController@index');
+$router->get('/', 'SearchController@index');
 
-$router->get('/train/search', 'TrainController@search');
-$router->post('/train/search', 'TrainController@search');
+$router->get('/train/search', 'SearchController@search');
+$router->post('/train/search', 'SearchController@search');
 
 $router->post('/reservation', 'ReservationController@index');
 $router->get('/reservation/result', 'ReservationController@result');
 
-$router->get("/user/login", "UserController@login");
-$router->post("/user/login", "UserController@login");
-
-$router->get("/user/register", "UserController@register");
-$router->post("/user/register", "UserController@register");
+$router->get("/user/auth", "UserController@auth");
+$router->post("/user/auth", "UserController@auth");
 
 $router->get("/user/dashboard", "UserController@dashboard");
 

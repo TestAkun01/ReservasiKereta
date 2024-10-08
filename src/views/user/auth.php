@@ -13,7 +13,8 @@
 
     <div class="container" id="container">
         <div class="form-container sign-up">
-            <form action="/user/register" method="POST">
+            <form action="/user/auth" method="POST">
+                <input type="hidden" name="action" value="register">
                 <h1>Buat Akun</h1>
                 <div class="social-icons">
                     <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
@@ -28,7 +29,8 @@
             </form>
         </div>
         <div class="form-container sign-in">
-            <form action="/user/login" method="POST"> 
+            <form action="/user/auth" method="POST">
+                <input type="hidden" name="action" value="login">
                 <h1>Masuk</h1>
                 <div class="social-icons">
                     <a href="#" class="icon"><i class="fa-brands fa-google-plus-g"></i></a>
