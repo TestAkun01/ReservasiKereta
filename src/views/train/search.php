@@ -40,6 +40,9 @@
                 <div class="w-[400px]">
                     <div class="border-2 border-black p-8 rounded-lg bg-[#ffffff] shadow-md">
                         <form action="/train/search" method="GET" class="space-y-6">
+                            <!-- 
+                                TO DO: gunakan var $_GET[from], [to], [date], [tickets] sebagai default jika ada  
+                            -->
                             <div>
                                 <label for="from_station" class="block text-sm font-medium text-gray-700">From Station</label>
                                 <select id="from_station" name="from" class="block w-full mt-1 p-2 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">

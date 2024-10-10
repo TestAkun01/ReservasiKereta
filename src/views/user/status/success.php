@@ -10,7 +10,7 @@
 <body>
     <h1>Success!</h1>
     <p><?= isset($data["message"]) ? $data["message"] : 'Operation completed successfully.'; ?></p>
-    <a href="/user/auth">Go to Auth</a>
+    <a href="/">Go to Home</a>
     <script>
         setTimeout(function() {
             window.location.href = "/";

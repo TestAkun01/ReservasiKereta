@@ -9,7 +9,7 @@ use App\Core\Model;
 
 class Schedule extends Model
 {
-    public function getAvailableSchedules($from, $to, $date, $tickets)
+    public function getAvailableSchedules($from, $to, $date)
     {
         try {
             $stmt = $this->db->prepare("
@@ -28,14 +28,12 @@ class Schedule extends Model
                 WHERE 
                     s.station_from = :from AND 
                     s.station_to = :to AND 
-                    s.departure_date = :date AND 
-                    s.seats_left >= :tickets
+                    s.departure_date = :date
             ");
 
             $stmt->bindParam(':from', $from, PDO::PARAM_STR);
             $stmt->bindParam(':to', $to, PDO::PARAM_STR);
             $stmt->bindParam(':date', $date, PDO::PARAM_STR);
-            $stmt->bindParam(':tickets', $tickets, PDO::PARAM_INT);
 
             $stmt->execute();
 

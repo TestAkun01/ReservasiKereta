@@ -45,7 +45,7 @@ class Router
 
         foreach ($this->routes[$method] as $route => $action) {
             if (preg_match($route, $uri, $matches)) {
-                array_shift($matches); // Remove the full match
+                array_shift($matches);
                 return $this->handleAction($action, $matches);
             }
         }
@@ -63,7 +63,6 @@ class Router
         list($controller, $method) = explode('@', $action);
         $controller = ucfirst($controller);
         $controllerClass = "App\\Controllers\\$controller";
-
         if (class_exists($controllerClass)) {
             $controllerInstance = new $controllerClass;
 

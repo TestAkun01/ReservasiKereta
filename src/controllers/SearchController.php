@@ -4,7 +4,7 @@ namespace App\Controllers;
 
 use App\Core\Controller;
 
-class TrainController extends Controller
+class SearchController extends Controller
 {
     public function index()
     {
@@ -22,13 +22,12 @@ class TrainController extends Controller
             $tickets = $_GET['tickets'] ?? null;
 
             $stationModel = $this->model('Station');
-            $data['stations'] = $stationModel->getAllStations();
-
             $scheduleModel = $this->model('Schedule');
-            $availableSchedules = $scheduleModel->getAvailableSchedules($from, $to, $date, $tickets);
-
-            $data['schedules'] = $availableSchedules;
-            $data['tickets'] = $tickets;
+            $data = [
+                'stations' => $stationModel->getAllStations(),
+                'schedules' => $scheduleModel->getAvailableSchedules($from, $to, $date),
+                'tickets' => $tickets
+            ];
             $this->view('train/search', $data);
         } else {
             header("location: /");

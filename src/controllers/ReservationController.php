@@ -9,21 +9,48 @@ class ReservationController extends Controller
     public function index()
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-
             $schedule_id = $_POST['schedule_id'];
             $tickets = $_POST['tickets'];
-            $user_id = $_POST["user_id"];
+            $user_id = $_POST['user_id'] ?? null;
+
+            $data = [
+                'schedule_id' => $schedule_id,
+                'tickets' => $tickets,
+                'user_id' => $user_id,
+            ];
+
+            $this->view('reservation/reserve', $data);
+        }
+    }
+
+    public function confirm()
+    {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+            $schedule_id = $_POST['schedule_id'];
+            $tickets = $_POST['tickets'];
+            $user_id = $_POST['user_id'] ?? null;
+            $name = $_POST['name'] ?? null;
+            $identity = $_POST['identity'] ?? null;
+            $contact = $_POST['contact'] ?? null;
+            $contact = $_POST['contact'] ?? null;
+            $email = $_POST['email'] ?? null;
+
+            if (!$schedule_id || !$tickets || ((!$name || !$identity || !$contact || !$email))) {
+                header("location: /reservation?error=Invalid input");
+                exit;
+            }
+
             $reservationModel = $this->model('Reservation');
 
-            if ($reservationModel->checkAndBookTickets($schedule_id, $tickets, $user_id)) {
+            if ($reservationModel->checkAndBookTickets($schedule_id, $tickets, $user_id, $name, $identity, $contact, $email)) {
                 header("location: /reservation/result?status=success&tickets=$tickets");
                 exit;
             } else {
-                header("location: /reservation/result?status=failed");
+                header("location: /reservation/result?status=failure");
                 exit;
             }
         } else {
-            header("Location: /");
+            $this->view("reservation/reserve");
             exit;
         }
     }
@@ -35,8 +62,8 @@ class ReservationController extends Controller
 
         if ($status == 'success') {
             $this->view("reservation/status/success", ["tickets" => $tickets]);
-        } elseif ($status == "failed") {
-            $this->view("reservation/status/failed");
+        } elseif ($status == "failure") {
+            $this->view("reservation/status/failure");
         } else {
             header("location: /");
             exit;

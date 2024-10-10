@@ -5,11 +5,12 @@ namespace App\Models;
 use PDO;
 use PDOException;
 use Exception;
+use App\Models\Mail;
 use App\Core\Model;
 
 class Reservation extends Model
 {
-    public function checkAndBookTickets($schedule_id, $tickets, $user_id)
+    public function checkAndBookTickets($schedule_id, $tickets, $user_id, $name, $identity, $contact, $email)
     {
         try {
             $this->db->beginTransaction();
@@ -29,11 +30,26 @@ class Reservation extends Model
             $stmt->bindParam(':schedule_id', $schedule_id, PDO::PARAM_INT);
             $stmt->execute();
 
-            $stmt = $this->db->prepare("INSERT INTO reservation (schedule_id, num_tickets, user_id) VALUES (:schedule_id, :tickets, :user_id)");
+            $stmt = $this->db->prepare("INSERT INTO reservation (schedule_id, num_tickets, user_id, name, identity, contact, email) VALUES (:schedule_id, :tickets, :user_id, :name, :identity, :contact, :email)");
             $stmt->bindParam(':schedule_id', $schedule_id, PDO::PARAM_INT);
             $stmt->bindParam(':tickets', $tickets, PDO::PARAM_INT);
-            $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
+
+            if ($user_id) {
+                $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
+            } else {
+                $stmt->bindValue(':user_id', null, PDO::PARAM_NULL);
+            }
+
+            $stmt->bindParam(':name', $name, PDO::PARAM_STR);
+            $stmt->bindParam(':identity', $identity, PDO::PARAM_STR);
+            $stmt->bindParam(':contact', $contact, PDO::PARAM_STR);
+            $stmt->bindParam(':email', $email, PDO::PARAM_STR);
             $stmt->execute();
+
+            $reservation_id = $this->db->lastInsertId();
+
+            $mail = new Mail();
+            $mail->sendBookingConfirmation($email, $tickets, $schedule_id, $reservation_id);
 
             $this->db->commit();
             return true;
@@ -45,6 +61,7 @@ class Reservation extends Model
             throw new Exception('Booking failed: ' . $e->getMessage());
         }
     }
+
 
     public function getUserReservations($userId)
     {
