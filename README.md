@@ -27,7 +27,6 @@ Aplikasi **Reservasi Kereta** adalah sebuah aplikasi web sederhana untuk melakuk
 
    ```
    cp .env.example .env
-
    ```
 
 5. **Setup database:**
@@ -53,11 +52,10 @@ Aplikasi **Reservasi Kereta** adalah sebuah aplikasi web sederhana untuk melakuk
    </VirtualHost>
    ```
 
-   - Tambahkan reservasi-kereta.test ke file C:\Windows\System32\drivers\etc\hosts
+   - Tambahkan reservasikereta.test ke file C:\Windows\System32\drivers\etc\hosts
 
    ```
-   127.0.0.1  reservasi-kereta.test
-
+   127.0.0.1  reservasikereta.test
    ```
 
 3. **Tambahkan file .htaccess di folder public: Pastikan file .htaccess sudah ada dan memiliki isi seperti ini:**
@@ -71,23 +69,63 @@ Aplikasi **Reservasi Kereta** adalah sebuah aplikasi web sederhana untuk melakuk
 ## Menjalankan Aplikasi
 
 1. Jalankan Laragon dan buka browser ke alamat:
-   - Jika menggunakan domain kustom: http://reservasi-kereta.test
+   - Jika menggunakan domain kustom: http://reservasikereta.test
 2. Mulai menggunakan aplikasi dengan mengakses halaman-halaman berikut:
    - / - Halaman utama untuk mencari tiket.
-   - /user/login - Halaman login pengguna.
-   - /user/register - Halaman registrasi pengguna.
 
-## Struktur Folder
+## Cara Berkontribusi
 
-    ```
-    └── ReservasiKereta
-    └── config/ # Konfigurasi aplikasi
-    └── public/ # Akses publik, berisi file assets dan .htaccess
-    └── src/ # Sumber kode aplikasi
-    └── controllers/ # Controller aplikasi
-    └── core/ # Core framework sederhana
-    └── models/ # Model untuk database
-    └── views/ # Tampilan untuk aplikasi
-    └── .env # Konfigurasi lingkungan
-    └── composer.json # Konfigurasi dependensi Composer
-    ```
+Kami menyambut baik kontribusi dari Anda! Berikut adalah panduan untuk berkontribusi pada proyek ini:
+
+### Langkah-langkah Kontribusi
+
+1. **Fork Proyek Ini:**
+
+   - Klik tombol "Fork" di bagian kanan atas halaman GitHub untuk membuat salinan repositori di akun GitHub Anda.
+
+2. **Clone Repositori:**
+
+   - Clone repositori yang telah Anda fork ke mesin lokal Anda:
+     ```
+     git clone https://github.com/TestAkun01/ReservasiKereta.git
+     ```
+
+3. **Buat Branch Baru:**
+
+   - Sebelum melakukan perubahan, buat branch baru untuk fitur atau perbaikan yang akan Anda buat:
+     ```
+     git checkout -b nama-branch
+     ```
+
+4. **Lakukan Perubahan:**
+
+   - Lakukan perubahan yang diinginkan pada kode.
+
+5. **Commit Perubahan:**
+
+   - Setelah selesai, lakukan commit terhadap perubahan yang telah Anda buat:
+     ```
+     git add .
+     git commit -m "Deskripsi singkat mengenai perubahan"
+     ```
+
+6. **Push ke Repository Anda:**
+
+   - Kirim branch yang telah Anda buat ke repositori Anda:
+     ```
+     git push origin nama-branch
+     ```
+
+7. **Buat Pull Request:**
+   - Kunjungi halaman repositori asli dan Anda akan melihat opsi untuk membuat Pull Request. Klik tombol "Compare & pull request" dan tambahkan deskripsi tentang perubahan Anda.
+
+### Panduan Kode
+
+- Pastikan untuk mengikuti konvensi penulisan kode yang ada di proyek ini.
+- Selalu lakukan pengujian untuk memastikan bahwa perubahan Anda tidak merusak fungsi yang ada.
+
+### Laporan Masalah
+
+Jika Anda menemukan bug atau memiliki saran untuk fitur baru, silakan buka [issue](https://github.com/TestAkun01/ReservasiKereta/issues) baru di repositori ini. Sertakan deskripsi yang jelas dan langkah-langkah untuk mereproduksi masalah yang Anda temui.
+
+Kami sangat menghargai setiap kontribusi dan masukan yang Anda berikan!
