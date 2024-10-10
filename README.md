@@ -94,8 +94,9 @@ Kami menyambut baik kontribusi dari Anda! Berikut adalah panduan untuk berkontri
 
    - Clone repositori yang telah Anda fork ke mesin lokal Anda:
      ```
-     git clone https://github.com/TestAkun01/ReservasiKereta.git
+     git clone https://github.com/username/repository.git
      ```
+   - Gantilah `username` dengan username GitHub Anda dan `repository` dengan nama repositori.
 
 3. **Buat Branch Baru:**
 
