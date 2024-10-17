@@ -23,6 +23,15 @@ $router->get("/user/dashboard", "UserController@dashboard");
 
 $router->get("/user/logout", "UserController@logout");
 
+$router->get("/admin/schedule", "ScheduleController@index");
+
+$router->get("/admin/schedule/create", "ScheduleController@create");
+$router->post("/admin/schedule/create", "ScheduleController@create");
+
+$router->get("/admin/schedule/edit/{id}", "ScheduleController@edit");
+$router->post("/admin/schedule/edit/{id}", "ScheduleController@edit");
+$router->get("/admin/schedule/delete/{id}", "ScheduleController@delete");
+
 
 $router->get("/test/{id}", "TestController@index");
 

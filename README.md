@@ -32,12 +32,9 @@ Aplikasi **Reservasi Kereta** adalah sebuah aplikasi web sederhana untuk melakuk
 5. **Setup database:**
    - Buat database baru di MySQL dengan nama yang sesuai (train_reservation sesuai di atas).
    - Buka Terminal atau Command Prompt.
-   - Hapus tanda komentar di bagian bawah manageDB.php.
-     - $dbManager->exportDatabase('backup.sql'); hapus tanda komentar untuk ekport db
-     - $dbManager->importDatabase('backup.sql'); hapus tanda komentar untuk import db
-   - Jalankan perintah berikut untuk mengeksekusi pastikan anda dapat mengakses command php dengan cara memasukkan D:\path\to\your\php-version di environment variable.
+   - Jalankan perintah berikut untuk eksport atau import database pastikan anda dapat mengakses command php dengan cara memasukkan D:\path\to\your\php-version di environment variable.
    ```
-   php manageDB.php
+   php db_manager.php [export|import] [filename = backup.sql]
    ```
 
 ## Mengatur Pretty URL di Laragon

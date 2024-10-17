@@ -13,7 +13,7 @@ CREATE TABLE `reservation` (
   KEY `user_id` (`user_id`),
   CONSTRAINT `fk_user` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE,
   CONSTRAINT `reservation_ibfk_1` FOREIGN KEY (`schedule_id`) REFERENCES `schedules` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 INSERT INTO reservation (id,schedule_id,user_id,num_tickets,booking_date,name,identity,contact,email) VALUES ('12','1','1','12','2024-10-07 03:21:10','','','','');
 INSERT INTO reservation (id,schedule_id,user_id,num_tickets,booking_date,name,identity,contact,email) VALUES ('13','1','1','1','2024-10-07 07:35:30','','','','');
@@ -28,10 +28,11 @@ INSERT INTO reservation (id,schedule_id,user_id,num_tickets,booking_date,name,id
 INSERT INTO reservation (id,schedule_id,user_id,num_tickets,booking_date,name,identity,contact,email) VALUES ('22','1','1','1','2024-10-10 21:19:35','Ahmad Ubaydir Rohman','Anjay','2121','nomorhpku6@gmail.com');
 INSERT INTO reservation (id,schedule_id,user_id,num_tickets,booking_date,name,identity,contact,email) VALUES ('25','1','1','1','2024-10-10 21:22:52','Ahmad Ubaydir Rohman','Anjay','2121','nomorhpku6@gmail.com');
 INSERT INTO reservation (id,schedule_id,user_id,num_tickets,booking_date,name,identity,contact,email) VALUES ('26','1','1','1','2024-10-10 21:38:50','Ahmad Ubaydir Rohman','Anjay','2121','nomorhpku6@gmail.com');
+INSERT INTO reservation (id,schedule_id,user_id,num_tickets,booking_date,name,identity,contact,email) VALUES ('27','1','1','2','2024-10-18 02:29:47','y','ini ktp','ini no telepon','n@g.m');
 
 CREATE TABLE `schedules` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `train_name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `train_id` int NOT NULL,
   `station_from` int NOT NULL,
   `station_to` int NOT NULL,
   `departure_date` date NOT NULL,
@@ -42,14 +43,16 @@ CREATE TABLE `schedules` (
   PRIMARY KEY (`id`),
   KEY `station_from` (`station_from`),
   KEY `station_to` (`station_to`),
+  KEY `train_id` (`train_id`) USING BTREE,
+  CONSTRAINT `fk_train` FOREIGN KEY (`train_id`) REFERENCES `trains` (`id`),
   CONSTRAINT `schedules_ibfk_1` FOREIGN KEY (`station_from`) REFERENCES `stations` (`id`),
   CONSTRAINT `schedules_ibfk_2` FOREIGN KEY (`station_to`) REFERENCES `stations` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-INSERT INTO schedules (id,train_name,station_from,station_to,departure_date,departure_time,seats_left,arrival_time,price) VALUES ('1','Argo Bromo','1','2','2024-10-05','08:00:00','18','12:00:00','300000.00');
-INSERT INTO schedules (id,train_name,station_from,station_to,departure_date,departure_time,seats_left,arrival_time,price) VALUES ('2','Argo Parahyangan','1','2','2024-10-05','14:00:00','49','18:00:00','250000.00');
-INSERT INTO schedules (id,train_name,station_from,station_to,departure_date,departure_time,seats_left,arrival_time,price) VALUES ('3','Taksaka','1','3','2024-10-06','07:00:00','79','11:00:00','350000.00');
-INSERT INTO schedules (id,train_name,station_from,station_to,departure_date,departure_time,seats_left,arrival_time,price) VALUES ('4','Gaya Baru','2','4','2024-10-07','09:00:00','120','15:00:00','200000.00');
+INSERT INTO schedules (id,train_id,station_from,station_to,departure_date,departure_time,seats_left,arrival_time,price) VALUES ('1','15','1','2','2024-10-05','08:00:00','20','12:00:00','300000.00');
+INSERT INTO schedules (id,train_id,station_from,station_to,departure_date,departure_time,seats_left,arrival_time,price) VALUES ('2','13','1','2','2024-10-05','14:00:00','49','18:00:00','250000.00');
+INSERT INTO schedules (id,train_id,station_from,station_to,departure_date,departure_time,seats_left,arrival_time,price) VALUES ('3','13','1','3','2024-10-06','07:00:00','79','11:00:00','350000.00');
+INSERT INTO schedules (id,train_id,station_from,station_to,departure_date,departure_time,seats_left,arrival_time,price) VALUES ('4','12','2','4','2024-10-07','09:00:00','120','15:00:00','200000.00');
 
 CREATE TABLE `stations` (
   `id` int NOT NULL AUTO_INCREMENT,
@@ -62,6 +65,22 @@ INSERT INTO stations (id,name,city) VALUES ('1','Gambir','Jakarta');
 INSERT INTO stations (id,name,city) VALUES ('2','Bandung','Bandung');
 INSERT INTO stations (id,name,city) VALUES ('3','Yogyakarta','Yogyakarta');
 INSERT INTO stations (id,name,city) VALUES ('4','Surabaya','Surabaya');
+
+CREATE TABLE `trains` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `total_seats` int NOT NULL,
+  `class` enum('Economy','Business','Executive') DEFAULT 'Economy',
+  `carriage` int NOT NULL,
+  `status` enum('Active','Inactive') DEFAULT 'Active',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+INSERT INTO trains (id,name,total_seats,class,carriage,status) VALUES ('11','Express Train A','200','Economy','5','Active');
+INSERT INTO trains (id,name,total_seats,class,carriage,status) VALUES ('12','Business Train B','150','Business','3','Active');
+INSERT INTO trains (id,name,total_seats,class,carriage,status) VALUES ('13','Executive Train C','100','Executive','2','Inactive');
+INSERT INTO trains (id,name,total_seats,class,carriage,status) VALUES ('14','Eco Train D','250','Economy','6','Active');
+INSERT INTO trains (id,name,total_seats,class,carriage,status) VALUES ('15','Fast Train E','180','Business','4','Active');
 
 CREATE TABLE `users` (
   `id` int NOT NULL AUTO_INCREMENT,

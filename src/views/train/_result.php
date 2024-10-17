@@ -3,7 +3,7 @@
         <!-- TO DO: ubah style jika ticket sudah habis atau ticket yang tersisa < ticket yang diminta maka ubah style nya -->
         <?php foreach ($data['schedules'] as $schedule): ?>
             <li class="bg-white p-6 rounded-lg shadow-lg">
-                <p class="text-lg font-semibold">Train: <?= $schedule['train_name']; ?></p>
+                <p class="text-lg font-semibold">Train: <?= $schedule['name']; ?></p>
                 <p>From: <?= $schedule['from_name']; ?>, <?= $schedule['from_city']; ?></p>
                 <p>To: <?= $schedule['to_name']; ?>, <?= $schedule['to_city']; ?></p>
                 <p>Price: <?= $schedule['price']; ?></p>

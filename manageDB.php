@@ -92,6 +92,14 @@ class DatabaseManager
 
 $dbManager = new DatabaseManager();
 
-// $dbManager->exportDatabase('backup.sql');
+$action = $argv[1] ?? null;
+$fileName = $argv[2] ?? "backup.sql";
 
-$dbManager->importDatabase('backup.sql');
+
+if ($action === 'export' && $fileName) {
+    $dbManager->exportDatabase($fileName);
+} elseif ($action === 'import' && $fileName) {
+    $dbManager->importDatabase($fileName);
+} else {
+    echo "Usage: php db_manageDB.php [export|import] [filename == backup.sql]\n";
+}
