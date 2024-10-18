@@ -10,7 +10,7 @@
 <body>
 
     <h1>Train Schedules</h1>
-    <a href="/admin/schedule/create">Add New Train</a>
+    <a href="/admin/schedule/create">Add New Schedule</a>
 
     <table>
         <thead>

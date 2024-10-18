@@ -101,5 +101,5 @@ if ($action === 'export' && $fileName) {
 } elseif ($action === 'import' && $fileName) {
     $dbManager->importDatabase($fileName);
 } else {
-    echo "Usage: php db_manageDB.php [export|import] [filename == backup.sql]\n";
+    echo "Usage: php manageDB.php [export|import] [filename == backup.sql]\n";
 }

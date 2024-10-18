@@ -22,7 +22,7 @@ class ScheduleController extends Controller
 
         if ($_SERVER["REQUEST_METHOD"] == "GET") {
             $data["stations"] = $stationModel->getAllStations();
-            $data["trains"] = $trainModel->getAllTrains();
+            $data["trains"] = $trainModel->getAllActiveTrains();
             $this->view('admin/schedule/create', $data);
         } elseif ($_SERVER["REQUEST_METHOD"] == "POST") {
 
@@ -52,7 +52,7 @@ class ScheduleController extends Controller
         if ($_SERVER["REQUEST_METHOD"] == "GET") {
             $data["schedule"] = $scheduleModel->getScheduleById($id);
             $data["stations"] = $stationModel->getAllStations();
-            $data["trains"] = $trainModel->getAllTrains();
+            $data["trains"] = $trainModel->getAllActiveTrains();
             $this->view('admin/schedule/edit', $data);
         } elseif ($_SERVER["REQUEST_METHOD"] == "POST") {
             $data = [
@@ -71,11 +71,11 @@ class ScheduleController extends Controller
         }
     }
 
-
     public function delete($id)
     {
         $scheduleModel = $this->model("Schedule");
-        $scheduleModel->deleteschedule($id);
+        $scheduleModel->deleteSchedule($id);
         header('Location: /admin/schedule');
+        exit();
     }
 }

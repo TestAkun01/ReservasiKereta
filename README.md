@@ -34,7 +34,7 @@ Aplikasi **Reservasi Kereta** adalah sebuah aplikasi web sederhana untuk melakuk
    - Buka Terminal atau Command Prompt.
    - Jalankan perintah berikut untuk eksport atau import database pastikan anda dapat mengakses command php dengan cara memasukkan D:\path\to\your\php-version di environment variable.
    ```
-   php db_manager.php [export|import] [filename = backup.sql]
+   php manageDB.php [export|import] [filename = backup.sql]
    ```
 
 ## Mengatur Pretty URL di Laragon
@@ -123,14 +123,3 @@ Kami menyambut baik kontribusi dari Anda! Berikut adalah panduan untuk berkontri
 
 7. **Buat Pull Request:**
    - Kunjungi halaman repositori asli dan Anda akan melihat opsi untuk membuat Pull Request. Klik tombol "Compare & pull request" dan tambahkan deskripsi tentang perubahan Anda.
-
-### Panduan Kode
-
-- Pastikan untuk mengikuti konvensi penulisan kode yang ada di proyek ini.
-- Selalu lakukan pengujian untuk memastikan bahwa perubahan Anda tidak merusak fungsi yang ada.
-
-### Laporan Masalah
-
-Jika Anda menemukan bug atau memiliki saran untuk fitur baru, silakan buka [issue](https://github.com/TestAkun01/ReservasiKereta/issues) baru di repositori ini. Sertakan deskripsi yang jelas dan langkah-langkah untuk mereproduksi masalah yang Anda temui.
-
-Kami sangat menghargai setiap kontribusi dan masukan yang Anda berikan!

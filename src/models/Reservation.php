@@ -66,7 +66,7 @@ class Reservation extends Model
     public function getUserReservations($userId)
     {
         $stmt = $this->db->prepare("
-            SELECT r.*, t.train_name, s.departure_date, s.departure_time 
+            SELECT r.*, t.name AS train_name, s.departure_date, s.departure_time
             FROM reservation r 
             JOIN schedules s ON r.schedule_id = s.id 
             JOIN trains t ON s.train_id = t.id
