@@ -91,4 +91,10 @@ class Train extends Model
             throw new Exception('Error deleting train: ' . $e->getMessage());
         }
     }
+
+    public function getTotalTrains()
+    {
+        $stmt = $this->db->query("SELECT COUNT(*) FROM trains");
+        return $stmt->fetchColumn();
+    }
 }

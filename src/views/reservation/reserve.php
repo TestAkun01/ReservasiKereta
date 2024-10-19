@@ -10,7 +10,7 @@
 <body>
     <div class="container">
         <h1>Reservasi Tiket Kereta</h1>
-        <form action="/reservation/confirm" method="POST">
+        <form action="/reservation/create" method="POST">
             <input type="hidden" name="schedule_id" value="<?= htmlspecialchars($data['schedule_id']); ?>">
             <input type="hidden" name="tickets" value="<?= htmlspecialchars($data['tickets']); ?>">
             <input type="hidden" name="user_id" value="<?= htmlspecialchars($data['user_id']); ?>">

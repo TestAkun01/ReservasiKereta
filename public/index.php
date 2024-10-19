@@ -7,18 +7,19 @@ use App\Core\Router;
 
 $router = new Router();
 
+$router->addGlobalMiddleware("AdminMiddleware@checkRole");
+
 $router->get('/', 'SearchController@index');
 
 $router->get('/train/search', 'SearchController@search');
 $router->post('/train/search', 'SearchController@search');
 
 $router->post('/reservation', 'ReservationController@index');
-$router->post('/reservation/confirm', 'ReservationController@confirm');
+$router->post('/reservation/create', 'ReservationController@create');
 $router->get('/reservation/result', 'ReservationController@result');
 
 // user
-
-$router->get("/user/auth", "UserController@auth");
+$router->get("/user/auth", "UserController@auth",   "AuthMiddleware@checkUserSession");
 $router->post("/user/auth", "UserController@auth");
 
 $router->get("/user/dashboard", "UserController@dashboard");
@@ -26,6 +27,9 @@ $router->get("/user/dashboard", "UserController@dashboard");
 $router->get("/user/logout", "UserController@logout");
 
 // Admin
+
+$router->get("/admin", "AdminController@index");
+
 // Schedule
 $router->get("/admin/schedule", "ScheduleController@index");
 
@@ -55,6 +59,13 @@ $router->post("/admin/station/create", "StationController@create");
 $router->get("/admin/station/edit/{id}", "StationController@edit");
 $router->post("/admin/station/edit/{id}", "StationController@edit");
 $router->get("/admin/station/delete/{id}", "StationController@delete");
+
+// User
+$router->get("/admin/user", "UserController@index");
+
+$router->get("/admin/user/edit/{id}", "UserController@edit");
+$router->post("/admin/user/edit/{id}", "UserController@edit");
+$router->get("/admin/user/delete/{id}", "UserController@delete");
 
 
 $router->get("/test/{id}", "TestController@index");

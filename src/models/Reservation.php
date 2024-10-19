@@ -76,4 +76,27 @@ class Reservation extends Model
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public function getRecentReservations($limit = 5)
+    {
+        $stmt = $this->db->prepare("
+            SELECT r.*, t.name AS train_name, s.departure_date, s.departure_time
+            FROM reservation r 
+            JOIN schedules s ON r.schedule_id = s.id 
+            JOIN trains t ON s.train_id = t.id
+            ORDER BY r.created_at DESC
+            LIMIT :limit
+        ");
+
+        $stmt->bindParam(':limit', $limit, PDO::PARAM_INT);
+        $stmt->execute();
+
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function getTotalReservations()
+    {
+        $stmt = $this->db->query("SELECT COUNT(*) FROM schedules");
+        return $stmt->fetchColumn();
+    }
 }

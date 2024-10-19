@@ -124,4 +124,10 @@ class Schedule extends Model
             throw new Exception('Error deleting schedule: ' . $e->getMessage());
         }
     }
+
+    public function getTotalSchedules()
+    {
+        $stmt = $this->db->query("SELECT COUNT(*) FROM schedules");
+        return $stmt->fetchColumn();
+    }
 }

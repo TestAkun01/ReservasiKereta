@@ -87,7 +87,7 @@
     </div>
     <div class="mt-8">
         <?php if (isset($data['schedules'])): ?>
-            <?php include __DIR__ . '/_result.php'; ?>
+            <?php include __DIR__ . '/_result.inc.php'; ?>
         <?php endif; ?>
     </div>
 

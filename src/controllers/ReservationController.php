@@ -23,7 +23,7 @@ class ReservationController extends Controller
         }
     }
 
-    public function confirm()
+    public function create()
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $schedule_id = $_POST['schedule_id'];

@@ -21,7 +21,7 @@ class UserController extends Controller
                     return;
                 }
 
-                if ($userModel->register($username, $password)) {
+                if ($userModel->createUser($username, $password)) {
                     $this->view("user/status/success", ["message" => "Registration successful!"]);
                 } else {
                     $this->view("user/status/failure", ["message" => "Registration failed. Please try again."]);
@@ -32,7 +32,8 @@ class UserController extends Controller
                 if ($user && $userModel->verifyUser($username, $password)) {
                     $_SESSION['user'] = [
                         'id' => $user['id'],
-                        'username' => $user['username']
+                        'username' => $user['username'],
+                        'role' => $user['role']
                     ];
 
                     $this->view("user/status/success", ["message" => "Login successful! Will redirect after 5 seconds!"]);
@@ -65,5 +66,33 @@ class UserController extends Controller
         session_destroy();
         header("Location: /");
         exit;
+    }
+
+    public function index()
+    {
+        $userModel = $this->model("User");
+        $data["users"] = $userModel->getAllUsers();
+        $this->view("admin/user/index", $data);
+    }
+
+    public function edit($id)
+    {
+        $userModel = $this->model("User");
+        if ($_SERVER["REQUEST_METHOD"] == "GET") {
+
+            $data["user"] = $userModel->getUserById($id);
+            $this->view("admin/user/edit", $data);
+        } elseif ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $userModel->updateRoleUser($id, $_POST);
+            header("Location: /admin/user");
+            exit;
+        }
+    }
+
+    public function delete($id)
+    {
+        $userModel = $this->model("User");
+        $userModel->deleteUser($id);
+        header("Location: /admin/user");
     }
 }

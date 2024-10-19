@@ -6,36 +6,44 @@ use App\Controllers\ErrorController;
 
 class Router
 {
+    protected $middlewares = [];
     private $routes = [
         'GET' => [],
         'POST' => [],
         'DELETE' => [],
         'PUT' => []
     ];
-
-    public function add($method, $uri, $action)
+    public function addGlobalMiddleware($action)
     {
-        $this->routes[strtoupper($method)][$this->generateRegex($uri)] = $action;
+        $this->middlewares[] = $action;
     }
 
-    public function get($uri, $action)
+    public function add($method, $uri, $action, $middleware)
     {
-        $this->add('GET', $uri, $action);
+        $this->routes[strtoupper($method)][$this->generateRegex($uri)] = [
+            'action' => $action,
+            'middleware' => $middleware
+        ];
     }
 
-    public function post($uri, $action)
+    public function get($uri, $action, $middleware = null)
     {
-        $this->add('POST', $uri, $action);
+        $this->add('GET', $uri, $action, $middleware);
     }
 
-    public function delete($uri, $action)
+    public function post($uri, $action, $middleware = null)
     {
-        $this->add('DELETE', $uri, $action);
+        $this->add('POST', $uri, $action, $middleware);
     }
 
-    public function put($uri, $action)
+    public function delete($uri, $action, $middleware = null)
     {
-        $this->add('PUT', $uri, $action);
+        $this->add('DELETE', $uri, $action, $middleware);
+    }
+
+    public function put($uri, $action, $middleware = null)
+    {
+        $this->add('PUT', $uri, $action, $middleware);
     }
 
     public function resolve()
@@ -43,15 +51,25 @@ class Router
         $uri = $this->parseUrl();
         $method = $_SERVER['REQUEST_METHOD'];
 
-        foreach ($this->routes[$method] as $route => $action) {
+        foreach ($this->middlewares as $middleware) {
+            $this->runMiddleware($middleware);
+        }
+
+        foreach ($this->routes[$method] as $route => $data) {
             if (preg_match($route, $uri, $matches)) {
                 array_shift($matches);
-                return $this->handleAction($action, $matches);
+
+                if (isset($data['middleware'])) {
+                    $this->runMiddleware($data['middleware']);
+                }
+
+                return $this->handleAction($data['action'], $matches);
             }
         }
 
         return $this->handleAction('ErrorController@notFound');
     }
+
 
     private function parseUrl()
     {
@@ -72,6 +90,21 @@ class Router
         }
 
         return (new ErrorController)->notFound();
+    }
+    private function runMiddleware($middleware)
+    {
+        if (is_string($middleware)) {
+            list($class, $method) = explode('@', $middleware);
+            $class = "App\\Middlewares\\$class";
+
+            if (class_exists($class) && method_exists($class, $method)) {
+                call_user_func([new $class, $method]);
+            } else {
+                throw new \Exception("Middleware $class@$method tidak ditemukan.");
+            }
+        } elseif (is_callable($middleware)) {
+            call_user_func($middleware);
+        }
     }
 
     private function generateRegex($uri)

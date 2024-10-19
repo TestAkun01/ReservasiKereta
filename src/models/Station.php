@@ -90,4 +90,10 @@ class Station extends Model
             throw new Exception('Error deleting station: ' . $e->getMessage());
         }
     }
+
+    public function getTotalStations()
+    {
+        $stmt = $this->db->query("SELECT COUNT(*) FROM stations");
+        return $stmt->fetchColumn();
+    }
 }

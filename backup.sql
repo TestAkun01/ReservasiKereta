@@ -8,6 +8,7 @@ CREATE TABLE `reservation` (
   `identity` varchar(50) NOT NULL,
   `contact` varchar(15) NOT NULL,
   `email` varchar(255) NOT NULL,
+  `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   KEY `schedule_id` (`schedule_id`),
   KEY `user_id` (`user_id`),
@@ -15,20 +16,20 @@ CREATE TABLE `reservation` (
   CONSTRAINT `reservation_ibfk_1` FOREIGN KEY (`schedule_id`) REFERENCES `schedules` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-INSERT INTO reservation (id,schedule_id,user_id,num_tickets,booking_date,name,identity,contact,email) VALUES ('12','1','1','12','2024-10-07 03:21:10','','','','');
-INSERT INTO reservation (id,schedule_id,user_id,num_tickets,booking_date,name,identity,contact,email) VALUES ('13','1','1','1','2024-10-07 07:35:30','','','','');
-INSERT INTO reservation (id,schedule_id,user_id,num_tickets,booking_date,name,identity,contact,email) VALUES ('14','1','1','1','2024-10-08 22:23:13','','','','');
-INSERT INTO reservation (id,schedule_id,user_id,num_tickets,booking_date,name,identity,contact,email) VALUES ('15','1','1','1','2024-10-10 20:07:51','Ahmad Ubaydir Rohman','Anjay','098778978','');
-INSERT INTO reservation (id,schedule_id,user_id,num_tickets,booking_date,name,identity,contact,email) VALUES ('16','1','1','1','2024-10-10 20:26:18','Ahmad Ubaydir Rohman','Anjay','2121','nomorhpku6@gmail.com');
-INSERT INTO reservation (id,schedule_id,user_id,num_tickets,booking_date,name,identity,contact,email) VALUES ('17','1','1','1','2024-10-10 20:55:31','Ahmad Ubaydir Rohman','Anjay','2121','nomorhpku6@gmail.com');
-INSERT INTO reservation (id,schedule_id,user_id,num_tickets,booking_date,name,identity,contact,email) VALUES ('18','1','1','1','2024-10-10 20:56:19','Ahmad Ubaydir Rohman','Anjay','2121','nomorhpku6@gmail.com');
-INSERT INTO reservation (id,schedule_id,user_id,num_tickets,booking_date,name,identity,contact,email) VALUES ('19','1',NULL,'1','2024-10-10 20:59:11','Ahmad Ubaydir Rohman','Anjay','2121','nomorhpku6@gmail.com');
-INSERT INTO reservation (id,schedule_id,user_id,num_tickets,booking_date,name,identity,contact,email) VALUES ('20','1','1','1','2024-10-10 21:09:29','Ahmad Ubaydir Rohman','Anjay','2121','nomorhpku6@gmail.com');
-INSERT INTO reservation (id,schedule_id,user_id,num_tickets,booking_date,name,identity,contact,email) VALUES ('21','1','1','1','2024-10-10 21:17:58','Ahmad Ubaydir Rohman','Anjay','2121','nomorhpku6@gmail.com');
-INSERT INTO reservation (id,schedule_id,user_id,num_tickets,booking_date,name,identity,contact,email) VALUES ('22','1','1','1','2024-10-10 21:19:35','Ahmad Ubaydir Rohman','Anjay','2121','nomorhpku6@gmail.com');
-INSERT INTO reservation (id,schedule_id,user_id,num_tickets,booking_date,name,identity,contact,email) VALUES ('25','1','1','1','2024-10-10 21:22:52','Ahmad Ubaydir Rohman','Anjay','2121','nomorhpku6@gmail.com');
-INSERT INTO reservation (id,schedule_id,user_id,num_tickets,booking_date,name,identity,contact,email) VALUES ('26','1','1','1','2024-10-10 21:38:50','Ahmad Ubaydir Rohman','Anjay','2121','nomorhpku6@gmail.com');
-INSERT INTO reservation (id,schedule_id,user_id,num_tickets,booking_date,name,identity,contact,email) VALUES ('27','1','1','2','2024-10-18 02:29:47','y','ini ktp','ini no telepon','n@g.m');
+INSERT INTO reservation (id,schedule_id,user_id,num_tickets,booking_date,name,identity,contact,email,created_at) VALUES ('12','1','1','12','2024-10-07 03:21:10','','','','','2024-10-19 19:25:21');
+INSERT INTO reservation (id,schedule_id,user_id,num_tickets,booking_date,name,identity,contact,email,created_at) VALUES ('13','1','1','1','2024-10-07 07:35:30','','','','','2024-10-19 19:25:21');
+INSERT INTO reservation (id,schedule_id,user_id,num_tickets,booking_date,name,identity,contact,email,created_at) VALUES ('14','1','1','1','2024-10-08 22:23:13','','','','','2024-10-19 19:25:21');
+INSERT INTO reservation (id,schedule_id,user_id,num_tickets,booking_date,name,identity,contact,email,created_at) VALUES ('15','1','1','1','2024-10-10 20:07:51','Ahmad Ubaydir Rohman','Anjay','098778978','','2024-10-19 19:25:21');
+INSERT INTO reservation (id,schedule_id,user_id,num_tickets,booking_date,name,identity,contact,email,created_at) VALUES ('16','1','1','1','2024-10-10 20:26:18','Ahmad Ubaydir Rohman','Anjay','2121','nomorhpku6@gmail.com','2024-10-19 19:25:21');
+INSERT INTO reservation (id,schedule_id,user_id,num_tickets,booking_date,name,identity,contact,email,created_at) VALUES ('17','1','1','1','2024-10-10 20:55:31','Ahmad Ubaydir Rohman','Anjay','2121','nomorhpku6@gmail.com','2024-10-19 19:25:21');
+INSERT INTO reservation (id,schedule_id,user_id,num_tickets,booking_date,name,identity,contact,email,created_at) VALUES ('18','1','1','1','2024-10-10 20:56:19','Ahmad Ubaydir Rohman','Anjay','2121','nomorhpku6@gmail.com','2024-10-19 19:25:21');
+INSERT INTO reservation (id,schedule_id,user_id,num_tickets,booking_date,name,identity,contact,email,created_at) VALUES ('19','1',NULL,'1','2024-10-10 20:59:11','Ahmad Ubaydir Rohman','Anjay','2121','nomorhpku6@gmail.com','2024-10-19 19:25:21');
+INSERT INTO reservation (id,schedule_id,user_id,num_tickets,booking_date,name,identity,contact,email,created_at) VALUES ('20','1','1','1','2024-10-10 21:09:29','Ahmad Ubaydir Rohman','Anjay','2121','nomorhpku6@gmail.com','2024-10-19 19:25:21');
+INSERT INTO reservation (id,schedule_id,user_id,num_tickets,booking_date,name,identity,contact,email,created_at) VALUES ('21','1','1','1','2024-10-10 21:17:58','Ahmad Ubaydir Rohman','Anjay','2121','nomorhpku6@gmail.com','2024-10-19 19:25:21');
+INSERT INTO reservation (id,schedule_id,user_id,num_tickets,booking_date,name,identity,contact,email,created_at) VALUES ('22','1','1','1','2024-10-10 21:19:35','Ahmad Ubaydir Rohman','Anjay','2121','nomorhpku6@gmail.com','2024-10-19 19:25:21');
+INSERT INTO reservation (id,schedule_id,user_id,num_tickets,booking_date,name,identity,contact,email,created_at) VALUES ('25','1','1','1','2024-10-10 21:22:52','Ahmad Ubaydir Rohman','Anjay','2121','nomorhpku6@gmail.com','2024-10-19 19:25:21');
+INSERT INTO reservation (id,schedule_id,user_id,num_tickets,booking_date,name,identity,contact,email,created_at) VALUES ('26','1','1','1','2024-10-10 21:38:50','Ahmad Ubaydir Rohman','Anjay','2121','nomorhpku6@gmail.com','2024-10-19 19:25:21');
+INSERT INTO reservation (id,schedule_id,user_id,num_tickets,booking_date,name,identity,contact,email,created_at) VALUES ('27','1','1','2','2024-10-18 02:29:47','y','ini ktp','ini no telepon','n@g.m','2024-10-19 19:25:21');
 
 CREATE TABLE `schedules` (
   `id` int NOT NULL AUTO_INCREMENT,
@@ -59,7 +60,7 @@ CREATE TABLE `stations` (
   `name` varchar(100) NOT NULL,
   `city` varchar(100) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 INSERT INTO stations (id,name,city) VALUES ('1','Gambir','Jakarta');
 INSERT INTO stations (id,name,city) VALUES ('2','Bandung','Bandung');
@@ -74,7 +75,7 @@ CREATE TABLE `trains` (
   `carriage` int NOT NULL,
   `status` enum('Active','Inactive') DEFAULT 'Active',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 INSERT INTO trains (id,name,total_seats,class,carriage,status) VALUES ('11','Express Train A','200','Economy','5','Active');
 INSERT INTO trains (id,name,total_seats,class,carriage,status) VALUES ('12','Business Train B','150','Business','3','Active');
@@ -87,9 +88,12 @@ CREATE TABLE `users` (
   `username` varchar(50) NOT NULL,
   `password` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  `role` enum('Admin','User') NOT NULL DEFAULT 'User',
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-INSERT INTO users (id,username,password,created_at) VALUES ('1','Test','$2y$10$EBwjMkKLOWT8kepV/oEaFeYIqrXZEQugifw7CyC/t16hID.NAnin.','2024-10-07 00:57:40');
+INSERT INTO users (id,username,password,created_at,updated_at,role) VALUES ('1','Test','$2y$10$EBwjMkKLOWT8kepV/oEaFeYIqrXZEQugifw7CyC/t16hID.NAnin.','2024-10-07 00:57:40','2024-10-19 10:52:34','Admin');
+INSERT INTO users (id,username,password,created_at,updated_at,role) VALUES ('3','anjay','$2y$10$/fwQJkSiqvORGl7wJc8GwubnBwArD9RjjegykrT9Swfr61NmEWQ/q','2024-10-19 18:24:03','2024-10-19 18:24:03','User');
 
