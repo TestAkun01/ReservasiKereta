@@ -6,9 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Train Reservation</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
 
-<body>
+<body  class="bg-black">
 
     <nav class="bg-gray-800 p-4 shadow-lg">
         <div class="container mx-auto flex justify-between items-center">
@@ -25,7 +26,7 @@
         </div>
     </nav>
 
-    <div class="bg-[url('/assets/images/keretaapibg.png')] h-[550px] bg-cover bg-center ">
+    <div class="bg-[url('/assets/images/keretaapibg.png')] h-[90vh] bg-cover bg-center ">
         <div class="container mx-auto pt-[60px]  ">
             <div class="flex justify-between">
                 <div class="w-[700px] self-center">
@@ -39,7 +40,7 @@
 
                 <div class="w-[400px]">
                     <div class="border-2 border-black p-8 rounded-lg bg-[#ffffff] shadow-md">
-                        <form action="/train/search" method="GET" class="space-y-6">
+                        <form action="/train/search#hasil" method="GET" class="space-y-6">
                             <!-- 
                                 TO DO: gunakan var $_GET[from], [to], [date], [tickets] sebagai default jika ada  
                             -->
@@ -81,16 +82,13 @@
                         </form>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>
-    <div class="mt-8">
+    <div class="mt-8 px-10" id="hasil">
         <?php if (isset($data['schedules'])): ?>
             <?php include __DIR__ . '/_result.inc.php'; ?>
         <?php endif; ?>
     </div>
-
 </body>
-
 </html>
