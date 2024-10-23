@@ -41,5 +41,5 @@
         <?php endforeach; ?>
     </ul>
 <?php else: ?>
-    <p class="text-center text-white italic mt-6">No available trains for the selected route and date.</p>
+    <p class="text-center text-white italic mt-6">Tidak ada kereta yang tersedia untuk rute dan tanggal yang di pilih</p>
 <?php endif; ?>
