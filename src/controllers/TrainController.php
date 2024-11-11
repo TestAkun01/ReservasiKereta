@@ -2,7 +2,7 @@
 
 namespace App\Controllers;
 
-use App\core\Controller;
+use App\Core\Controller;
 
 class TrainController extends Controller
 {
@@ -11,7 +11,7 @@ class TrainController extends Controller
         if ($_SERVER["REQUEST_METHOD"] == "GET") {
             $trainModel = $this->model("Train");
             $data["trains"] = $trainModel->getAllTrains();
-            $this->view('admin/train/index', $data);
+            $this->view('admin/train/index', $data, "admin");
         }
     }
 
@@ -20,7 +20,7 @@ class TrainController extends Controller
         $trainModel = $this->model("Train");
 
         if ($_SERVER["REQUEST_METHOD"] == "GET") {
-            $this->view('admin/train/create');
+            $this->view('admin/train/create', [], "admin");
         } elseif ($_SERVER["REQUEST_METHOD"] == "POST") {
             $data = [
                 "name" => $_POST["name"],
@@ -40,7 +40,7 @@ class TrainController extends Controller
         $trainModel = $this->model("Train");
         if ($_SERVER["REQUEST_METHOD"] == "GET") {
             $data["train"] = $trainModel->getTrainById($id);
-            $this->view('admin/train/edit', $data);
+            $this->view('admin/train/edit', $data, "admin");
         } elseif ($_SERVER["REQUEST_METHOD"] == "POST") {
             $data = [
                 "name" => $_POST["name"],

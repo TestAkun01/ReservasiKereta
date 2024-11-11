@@ -48,8 +48,8 @@ class Reservation extends Model
 
             $reservation_id = $this->db->lastInsertId();
 
-            $mail = new Mail();
-            $mail->sendBookingConfirmation($email, $tickets, $schedule_id, $reservation_id);
+            // $mail = new Mail();
+            // $mail->sendBookingConfirmation($email, $tickets, $schedule_id, $reservation_id);
 
             $this->db->commit();
             return true;

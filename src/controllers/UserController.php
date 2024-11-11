@@ -72,7 +72,7 @@ class UserController extends Controller
     {
         $userModel = $this->model("User");
         $data["users"] = $userModel->getAllUsers();
-        $this->view("admin/user/index", $data);
+        $this->view("admin/user/index", $data, "admin");
     }
 
     public function edit($id)
@@ -81,7 +81,7 @@ class UserController extends Controller
         if ($_SERVER["REQUEST_METHOD"] == "GET") {
 
             $data["user"] = $userModel->getUserById($id);
-            $this->view("admin/user/edit", $data);
+            $this->view("admin/user/edit", $data, "admin");
         } elseif ($_SERVER["REQUEST_METHOD"] == "POST") {
             $userModel->updateRoleUser($id, $_POST);
             header("Location: /admin/user");

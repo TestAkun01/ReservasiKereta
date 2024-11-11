@@ -11,7 +11,7 @@ class Model
 
     public function __construct()
     {
-        $dbConfig = require __DIR__ . '/../../config/database.php';
+        $dbConfig = require __DIR__ . '/../config/database.php';
 
         try {
             $dsn = 'mysql:host=' . $dbConfig['host'] . ';dbname=' . $dbConfig['name'] . ';charset=utf8';

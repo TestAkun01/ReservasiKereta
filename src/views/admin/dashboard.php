@@ -1,75 +1,51 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <title>Admin Dashboard</title>
-</head>
-
-<body>
-    <header>
-        <h1>Welcome to Admin Dashboard</h1>
-        <nav>
-            <ul>
-                <li><a href="/admin/train">Manage Trains</a></li>
-                <li><a href="/admin/schedule">Manage Schedules</a></li>
-                <li><a href="/admin/user">Manage Users</a></li>
-                <li><a href="/logout">Logout</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <main>
-        <h2>Dashboard Overview</h2>
-        <div class="stats">
-            <div class="stat-item">
-                <h3>Total Trains</h3>
-                <p><?php echo $data["totalTrains"]; ?></p>
+<div class="container mx-auto space-y-6">
+    <section class="bg-white p-6 rounded-lg shadow-md">
+        <h2 class="text-2xl font-semibold text-gray-700">Dashboard Overview</h2>
+        <div class="grid grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
+            <div class="stat-item bg-gray-50 p-4 rounded-lg shadow">
+                <h3 class="text-xl font-medium text-gray-800">Total Trains</h3>
+                <p class="text-2xl font-bold text-blue-600"><?php echo $data["totalTrains"]; ?></p>
             </div>
-            <div class="stat-item">
-                <h3>Total Trains</h3>
-                <p><?php echo $data["totalSchedules"]; ?></p>
+            <div class="stat-item bg-gray-50 p-4 rounded-lg shadow">
+                <h3 class="text-xl font-medium text-gray-800">Total Schedules</h3>
+                <p class="text-2xl font-bold text-blue-600"><?php echo $data["totalSchedules"]; ?></p>
             </div>
-            <div class="stat-item">
-                <h3>Total Trains</h3>
-                <p><?php echo $data["totalStations"]; ?></p>
+            <div class="stat-item bg-gray-50 p-4 rounded-lg shadow">
+                <h3 class="text-xl font-medium text-gray-800">Total Stations</h3>
+                <p class="text-2xl font-bold text-blue-600"><?php echo $data["totalStations"]; ?></p>
             </div>
-            <div class="stat-item">
-                <h3>Total Reservations</h3>
-                <p><?php echo $data["totalReservations"]; ?></p>
+            <div class="stat-item bg-gray-50 p-4 rounded-lg shadow">
+                <h3 class="text-xl font-medium text-gray-800">Total Reservations</h3>
+                <p class="text-2xl font-bold text-blue-600"><?php echo $data["totalReservations"]; ?></p>
             </div>
-            <div class="stat-item">
-                <h3>Total Users</h3>
-                <p><?php echo $data["totalUsers"]; ?></p>
+            <div class="stat-item bg-gray-50 p-4 rounded-lg shadow">
+                <h3 class="text-xl font-medium text-gray-800">Total Users</h3>
+                <p class="text-2xl font-bold text-blue-600"><?php echo $data["totalUsers"]; ?></p>
             </div>
         </div>
+    </section>
 
-        <h2>Recent Reservations</h2>
-        <table>
+    <section class="bg-white p-6 rounded-lg shadow-md mt-6">
+        <h2 class="text-2xl font-semibold text-gray-700">Recent Reservations</h2>
+        <table class="min-w-full table-auto mt-4">
             <thead>
-                <tr>
-                    <th>Reservation ID</th>
-                    <th>Name</th>
-                    <th>Train</th>
-                    <th>Departure Date</th>
-                    <th>Departure Time</th>
+                <tr class="bg-gray-100">
+                    <th class="px-4 py-2 text-left text-gray-700">Reservation ID</th>
+                    <th class="px-4 py-2 text-left text-gray-700">Name</th>
+                    <th class="px-4 py-2 text-left text-gray-700">Train</th>
+                    <th class="px-4 py-2 text-left text-gray-700">Created At</th>
                 </tr>
             </thead>
             <tbody>
                 <?php foreach ($data["recentReservations"] as $reservation): ?>
-                    <tr>
-                        <td><?php echo htmlspecialchars($reservation['id']); ?></td>
-                        <td><?php echo htmlspecialchars($reservation['name']);
-                            ?></td>
-                        <td><?php echo htmlspecialchars($reservation['train_name']); ?></td>
-                        <td><?php echo htmlspecialchars($reservation['departure_date']); ?></td>
-                        <td><?php echo htmlspecialchars($reservation['departure_time']); ?></td>
+                    <tr class="border-t">
+                        <td class="px-4 py-2"><?php echo htmlspecialchars($reservation['id']); ?></td>
+                        <td class="px-4 py-2"><?php echo htmlspecialchars($reservation['name']); ?></td>
+                        <td class="px-4 py-2"><?php echo htmlspecialchars($reservation['train_name']); ?></td>
+                        <td class="px-4 py-2"><?php echo htmlspecialchars($reservation['created_at']); ?></td>
                     </tr>
                 <?php endforeach; ?>
             </tbody>
         </table>
-
-    </main>
-</body>
-
-</html>
+    </section>
+</div>

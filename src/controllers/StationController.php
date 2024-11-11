@@ -2,7 +2,7 @@
 
 namespace App\Controllers;
 
-use App\core\Controller;
+use App\Core\Controller;
 
 class StationController extends Controller
 {
@@ -11,7 +11,7 @@ class StationController extends Controller
         if ($_SERVER["REQUEST_METHOD"] == "GET") {
             $stationModel = $this->model("Station");
             $data["stations"] = $stationModel->getAllstations();
-            $this->view('admin/station/index', $data);
+            $this->view('admin/station/index', $data, "admin");
         }
     }
 
@@ -20,7 +20,7 @@ class StationController extends Controller
         $stationModel = $this->model("Station");
 
         if ($_SERVER["REQUEST_METHOD"] == "GET") {
-            $this->view('admin/station/create');
+            $this->view('admin/station/create', [], 'admin');
         } elseif ($_SERVER["REQUEST_METHOD"] == "POST") {
             $data = [
                 "name" => $_POST["name"],
@@ -37,7 +37,7 @@ class StationController extends Controller
         $stationModel = $this->model("station");
         if ($_SERVER["REQUEST_METHOD"] == "GET") {
             $data["station"] = $stationModel->getStationById($id);
-            $this->view('admin/station/edit', $data);
+            $this->view('admin/station/edit', $data, "admin");
         } elseif ($_SERVER["REQUEST_METHOD"] == "POST") {
             $data = [
                 "name" => $_POST["name"],

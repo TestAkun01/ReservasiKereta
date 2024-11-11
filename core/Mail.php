@@ -11,7 +11,7 @@ class Mail
     public function __construct()
     {
         $this->mail = new PHPMailer(true);
-        $mailConfig = include(__DIR__ . '/../../config/mail.php');
+        $mailConfig = include(__DIR__ . '/../config/mail.php');
 
         $this->mail->isSMTP();
         $this->mail->Host = $mailConfig['host'];

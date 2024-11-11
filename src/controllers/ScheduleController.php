@@ -11,7 +11,7 @@ class ScheduleController extends Controller
         if ($_SERVER["REQUEST_METHOD"] == "GET") {
             $scheduleModel = $this->model("Schedule");
             $data["schedules"] = $scheduleModel->getAllSchedules();
-            $this->view('admin/schedule/index', $data);
+            $this->view('admin/schedule/index', $data, "admin");
         }
     }
     public function create()
@@ -23,7 +23,7 @@ class ScheduleController extends Controller
         if ($_SERVER["REQUEST_METHOD"] == "GET") {
             $data["stations"] = $stationModel->getAllStations();
             $data["trains"] = $trainModel->getAllActiveTrains();
-            $this->view('admin/schedule/create', $data);
+            $this->view('admin/schedule/create', $data, 'admin');
         } elseif ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             $data = [
@@ -53,7 +53,7 @@ class ScheduleController extends Controller
             $data["schedule"] = $scheduleModel->getScheduleById($id);
             $data["stations"] = $stationModel->getAllStations();
             $data["trains"] = $trainModel->getAllActiveTrains();
-            $this->view('admin/schedule/edit', $data);
+            $this->view('admin/schedule/edit', $data, "admin");
         } elseif ($_SERVER["REQUEST_METHOD"] == "POST") {
             $data = [
                 'train_id' => $_POST['train_id'] ?? null,

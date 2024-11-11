@@ -9,8 +9,8 @@ class ReservationController extends Controller
     public function index()
     {
         if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-            $schedule_id = $_POST['schedule_id'];
-            $tickets = $_POST['tickets'];
+            $schedule_id = $_POST['schedule_id'] ?? null;
+            $tickets = $_POST['tickets'] ?? null;
             $user_id = $_POST['user_id'] ?? null;
 
             $data = [
@@ -35,7 +35,7 @@ class ReservationController extends Controller
             $contact = $_POST['contact'] ?? null;
             $email = $_POST['email'] ?? null;
 
-            if (!$schedule_id || !$tickets || ((!$name || !$identity || !$contact || !$email))) {
+            if (!$schedule_id || !$tickets || !$name || !$identity || !$contact || !$email) {
                 header("location: /reservation?error=Invalid input");
                 exit;
             }
@@ -49,16 +49,13 @@ class ReservationController extends Controller
                 header("location: /reservation/result?status=failure");
                 exit;
             }
-        } else {
-            $this->view("reservation/reserve");
-            exit;
         }
     }
 
     public function result()
     {
-        $status = isset($_GET["status"]) ? $_GET["status"] : null;
-        $tickets = isset($_GET['tickets']) ? $_GET['tickets'] : null;
+        $status = isset($_GET["status"]) ? htmlspecialchars($_GET["status"]) : null;
+        $tickets = isset($_GET['tickets']) ? htmlspecialchars($_GET['tickets']) : null;
 
         if ($status == 'success') {
             $this->view("reservation/status/success", ["tickets" => $tickets]);

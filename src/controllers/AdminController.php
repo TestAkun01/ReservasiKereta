@@ -21,6 +21,6 @@ class AdminController extends Controller
             "totalReservations" => $reservationModel->getTotalReservations(),
             "recentReservations" => $reservationModel->getRecentReservations()
         ];
-        $this->view('admin/dashboard', $data);
+        $this->view('admin/dashboard', $data, "admin");
     }
 }

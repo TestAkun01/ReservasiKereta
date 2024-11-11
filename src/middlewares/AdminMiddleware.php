@@ -11,7 +11,7 @@ class AdminMiddleware
         if (strpos($uri, '/admin/') === 0) {
             if (!isset($_SESSION['user']) || $_SESSION['user']['role'] !== 'Admin') {
                 header('Location: /user/auth');
-                exit();
+                exit;
             }
         }
     }

@@ -13,6 +13,7 @@ class Router
         'DELETE' => [],
         'PUT' => []
     ];
+
     public function addGlobalMiddleware($action)
     {
         $this->middlewares[] = $action;
@@ -70,12 +71,6 @@ class Router
         return $this->handleAction('ErrorController@notFound');
     }
 
-
-    private function parseUrl()
-    {
-        return isset($_GET['url']) ? "/" . rtrim($_GET['url'], '/') : "/";
-    }
-
     private function handleAction($action, $params = [])
     {
         list($controller, $method) = explode('@', $action);
@@ -91,6 +86,7 @@ class Router
 
         return (new ErrorController)->notFound();
     }
+
     private function runMiddleware($middleware)
     {
         if (is_string($middleware)) {
@@ -111,5 +107,10 @@ class Router
     {
         $pattern = preg_replace('/{([^}]+)}/', '([^/]+)', $uri);
         return "#^$pattern$#";
+    }
+
+    private function parseUrl()
+    {
+        return isset($_GET['url']) ? "/" . rtrim($_GET['url'], '/') : "/";
     }
 }
