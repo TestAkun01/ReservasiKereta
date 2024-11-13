@@ -1,38 +1,30 @@
 # Reservasi Kereta
 
-Aplikasi **Reservasi Kereta** adalah sebuah aplikasi web sederhana untuk melakukan reservasi tiket kereta. Aplikasi ini menggunakan PHP dengan arsitektur MVC dan menggunakan Laragon sebagai server lokal. Aplikasi ini juga mendukung penggunaan **Pretty URL**.
+Aplikasi **Reservasi Kereta** adalah sebuah aplikasi web sederhana untuk melakukan reservasi tiket kereta. Aplikasi ini menggunakan PHP dengan arsitektur MVC dan menggunakan Laragon sebagai server lokal.
 
 ## Persyaratan
 
 - [Laragon](https://laragon.org/download/)
 - PHP 7.x atau lebih baru
-- Composer
+- [Composer](https://getcomposer.org)
 - MySQL
 
 ## Instalasi
 
-1. **Clone repository ini ke folder `www` di Laragon:**
-   ```
-   git clone https://github.com/username/repository.git ReservasiKereta
-   ```
-2. **Masuk ke folder proyek:**
-   ```
-   cd ReservasiKereta
-   ```
-3. **Instal dependensi menggunakan Composer:**
+1. **Instal dependensi menggunakan Composer:**
    ```
    composer install
    ```
-4. **Salin file .env.example menjadi .env dan sesuaikan konfigurasi database di dalamnya:**
+2. **Salin file .env.example menjadi .env dan sesuaikan konfigurasi database di dalamnya:**
 
    ```
    cp .env.example .env
    ```
 
-5. **Setup database:**
+3. **Setup database:**
    - Buat database baru di MySQL dengan nama yang sesuai (train_reservation sesuai di atas).
    - Buka Terminal atau Command Prompt.
-   - Jalankan perintah berikut untuk eksport atau import database pastikan anda dapat mengakses command php dengan cara memasukkan D:\path\to\your\php-version di environment variable.
+   - Jalankan perintah berikut untuk eksport atau import database. pastikan terminal dapat mengakses command php dengan cara memasukkan D:\path\to\your\php-version di path environment variable account.
    ```
    php manageDB.php [export|import] [filename = backup.sql]
    ```
@@ -62,14 +54,6 @@ Aplikasi **Reservasi Kereta** adalah sebuah aplikasi web sederhana untuk melakuk
    127.0.0.1  reservasikereta.test
    ```
 
-3. **Tambahkan file .htaccess di folder public: Pastikan file .htaccess sudah ada dan memiliki isi seperti ini:**
-   ```
-   RewriteEngine On
-   RewriteCond %{REQUEST_FILENAME} !-f
-   RewriteCond %{REQUEST_FILENAME} !-d
-   RewriteRule ^(.*)$ index.php?url=$1 [QSA,L]
-   ```
-
 ## Menjalankan Aplikasi
 
 1. Jalankan Laragon dan buka browser ke alamat:
@@ -78,10 +62,6 @@ Aplikasi **Reservasi Kereta** adalah sebuah aplikasi web sederhana untuk melakuk
    - / - Halaman utama untuk mencari tiket.
 
 ## Cara Berkontribusi
-
-Kami menyambut baik kontribusi dari Anda! Berikut adalah panduan untuk berkontribusi pada proyek ini:
-
-### Langkah-langkah Kontribusi
 
 1. **Fork Proyek Ini:**
 
@@ -104,7 +84,7 @@ Kami menyambut baik kontribusi dari Anda! Berikut adalah panduan untuk berkontri
 
 4. **Lakukan Perubahan:**
 
-   - Lakukan perubahan yang diinginkan pada kode.
+   - Lakukan instalasi dan rubah kode yang di inginkan.
 
 5. **Commit Perubahan:**
 
